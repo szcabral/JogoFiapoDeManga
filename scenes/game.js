@@ -1,5 +1,6 @@
+//Cena principal do jogo.
 export class GameScene extends Phaser.Scene {
-
+//Definição de dimensões.
     alturaJogo = 600;
     larguraJogo = 800;
     plataformas = [];
@@ -17,20 +18,20 @@ export class GameScene extends Phaser.Scene {
         this.load.audio("musicaFundo", "../assets/CerolNaMao.mp3");
     }
 
-    //Criação e 
+    
     create() {
-
+         // Faz a câmera desaparecer lentamente
         this.cameras.main.fadeIn(1000, 0, 0);
         this.pontuacao = 0;
         this.add.image(this.larguraJogo/2, this.alturaJogo/2, "paisagem2").setScale(0.6);
-
+        // Cria o personagem do jogador (cachorro) e adiciona ao jogo
         this.player = this.physics.add.sprite(this.larguraJogo/2, 100, 'dogsprite').setScale(3);
         this.player.setCollideWorldBounds(true);
-
+         // Adiciona a colisão entre o personagem e as plataformas
         this.plataformas[0] = this.physics.add.staticImage(200, 450, 'plataforma');
         this.plataformas[0].body.setSize(128, 84, true);
         this.plataformas[0].setScale(0.72);
-
+        // Configuração dos controles do jogador (teclas de direção)
         this.plataformas[1] = this.physics.add.staticImage(580, 360, 'plataforma');
          this.plataformas[1].body.setSize(128, 84, true);
         this.plataformas[1].setScale(0.72);
@@ -64,7 +65,7 @@ export class GameScene extends Phaser.Scene {
             frameRate: 20
         });
 
-// add o bug / mariposa
+// Adicionando a moto.
     this.moto = this.physics.add.sprite(this.larguraJogo/3, 0, 'moto');
     this.moto.setCollideWorldBounds(true); // "borda no mundo"
        this.moto.setScale(0.3);
@@ -74,14 +75,14 @@ export class GameScene extends Phaser.Scene {
         // adicionando placar 
        this.placar = this.add.text(50, 50, 'Pontuacao:' + this.pontuacao, {fontSize:'51px', fill:'#ffffff'}, {fontStyle: "bold"});
 
-       // quando o player encostar no bug
+       // quando o player encostar na moto
        this.physics.add.overlap(this.player, this.moto, () => { 
 
         this.moto.setVisible(false); //a moto fica invisível
 
         //número sorteado entre 50 e 650
        var posicaoMoto_Y = Phaser.Math.RND.between(50, 650);
-        //ajusta a posição do moto de acordo com o número sorteado
+        //ajusta a posição da moto de acordo com o número sorteado
         this.moto.setPosition(posicaoMoto_Y, 100); 
 
         this.pontuacao += 1; //soma pontuação
@@ -92,17 +93,19 @@ export class GameScene extends Phaser.Scene {
     }
 
 update() {
-
+ // Lógica para movimento do personagem para a esquerda
     if (this.cursors.left.isDown) {
         this.player.setVelocityX(-160);
         if (this.player.anims.currentAnim?.key !== 'esquerda') {
             this.player.anims.play('esquerda', true);
         }
+         // Lógica para movimento do personagem para a direita
     } else if (this.cursors.right.isDown) {
         this.player.setVelocityX(160);
         if (this.player.anims.currentAnim?.key !== 'direita') {
             this.player.anims.play('direita', true);
         }
+        // Lógica para quando o personagem não está se movendo
     } else {
         this.player.setVelocityX(0);
         if (this.player.anims.currentAnim?.key !== 'parada') {
