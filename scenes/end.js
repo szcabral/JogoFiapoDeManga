@@ -14,12 +14,12 @@ export class EndScene extends Phaser.Scene {
 
     //Carregamento das imagens na cena final.
     preload() {
-        this.load.image("paisagem", "../assets/paisagem.png");
-        this.load.image("computador", "../assets/computador_paisagem.png");
-        this.load.image("dog", "../assets/fiapinho.png");
-        this.load.image("ganhou", "../assets/ganhou.png");
-        this.load.image("menu", "../assets/botao_menu.png");
-        this.load.image("restart", "../assets/botao_restart.png");
+        this.load.image("paisagem", "./assets/paisagem.png");
+        this.load.image("computador", "./assets/computador_paisagem.png");
+        this.load.image("dog", "./assets/fiapinho.png");
+        this.load.image("ganhou", "./assets/ganhou.png");
+        this.load.image("menu", "./assets/botao_menu.png");
+        this.load.image("restart", "./assets/botao_restart.png");
     }
 
     create() {

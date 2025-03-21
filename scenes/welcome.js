@@ -9,11 +9,11 @@ export class WelcomeScene extends Phaser.Scene {
     }
 //Carregando imagens.
     preload() {
-        this.load.image("paisagem", "../assets/paisagem.jpeg");
-        this.load.image("computador", "../assets/computador_paisagem.png");
-        this.load.image("dogTitulo", "../assets/dogTitulo.png");
-        this.load.image("play", "../assets/botao_play.png");
-        this.load.image("descricao", "../assets/descricao.png");
+        this.load.image("paisagem", "./assets/paisagem.jpeg");
+        this.load.image("computador", "./assets/computador_paisagem.png");
+        this.load.image("dogTitulo", "./assets/dogTitulo.png");
+        this.load.image("play", "./assets/botao_play.png");
+        this.load.image("descricao", "./assets/descricao.png");
     }
 
     create() {
